@@ -1,6 +1,0 @@
-DB_HOST = db
-DB_PORT = 3306
-DB_ROOT_PASSWORD = my_root_password
-DB_NAME = my_db_name
-DB_USER = my_user_name
-DB_PASSWORD = my_password
