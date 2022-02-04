@@ -28,7 +28,7 @@
 
                 <div class="row">
                     <div class="col-2">
-                        <button type="button" class="btn btn-primary" onclick="enableWebcam()"><i class="fa-solid fa-camera"></i></button>
+                        <button id="btnEnableWebcam" type="button" class="btn btn-primary" onclick="enableWebcam()"><i class="fa-solid fa-camera"></i></button>
                     </div>
                     <div class="col-10">
                         <input type="text" name="qrcode" class="form-control" id="input-qrcode">
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="d-flex flex-column justify-content-center gap-3">
-                    <button type="submit" class="btn btn-success w-100">VERIFICA</button>
+                    <button id="btnValidate" type="submit" class="btn btn-success w-100">VERIFICA</button>
                     <button id="btnUpdateCert" type="button" class="btn btn-primary w-100">AGGIORNA CERTIFICATI</button>
                 </div>
                 

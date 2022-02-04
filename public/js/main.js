@@ -12,6 +12,11 @@ function validateSubmit(event, webcamDecodeText = null ){
             icon: 'error',
             showConfirmButton:false,
             timer:DISPLAY_TIME
+        }).then(function(){
+            setTimeout(function(){
+                document.getElementById('btnValidate').blur();
+                document.getElementById('input-qrcode').focus();
+            },500);
         });
         return;
     }
@@ -28,6 +33,11 @@ function validateSubmit(event, webcamDecodeText = null ){
             icon: 'error',
             showConfirmButton:false,
             timer:DISPLAY_TIME
+        }).then(function(){
+            setTimeout(function(){
+                document.getElementById('btnValidate').blur();
+                document.getElementById('input-qrcode').focus();
+            },500);
         });
     });
 }
@@ -46,6 +56,11 @@ function validateResponse(data){
                 icon: 'success',
                 showConfirmButton:false,
                 timer:DISPLAY_TIME
+            }).then(function(){
+                setTimeout(function(){
+                    document.getElementById('btnValidate').blur();
+                    document.getElementById('input-qrcode').focus();
+                },500);
             });
             break;
         case 'NOT_VALID':
@@ -55,6 +70,8 @@ function validateResponse(data){
                 icon: 'error',
                 showConfirmButton:false,
                 timer:DISPLAY_TIME
+            }).then(function(){
+                document.getElementById('input-qrcode').focus();
             });
             break;
         case 'NOT_EU_DCC':
@@ -65,6 +82,11 @@ function validateResponse(data){
                 icon: 'error',
                 showConfirmButton:false,
                 timer:DISPLAY_TIME
+            }).then(function(){
+                setTimeout(function(){
+                    document.getElementById('btnValidate').blur();
+                    document.getElementById('input-qrcode').focus();
+                },500);
             });
     }
 }
@@ -79,6 +101,7 @@ function onWebcamScanFailure(error){
 }
 
 function enableWebcam(){
+
     if(html5QrcodeScanner == null){
         html5QrcodeScanner = new Html5QrcodeScanner(
             "webcam", 
@@ -95,6 +118,12 @@ function enableWebcam(){
         html5QrcodeScanner.clear();
         html5QrcodeScanner = null ;
     }
+
+    setTimeout(function(){
+        document.getElementById('btnEnableWebcam').blur();
+        document.getElementById('input-qrcode').focus();
+    },500);
+
 }
 
 function updateCert(){
@@ -107,6 +136,11 @@ function updateCert(){
             icon: 'success',
             showConfirmButton:false,
             timer:DISPLAY_TIME
+        }).then(function(){
+            setTimeout(function(){
+                document.getElementById('btnUpdateCert').blur();
+                document.getElementById('input-qrcode').focus();
+            },500);
         });
     }).catch(function(err){
         Swal.fire({
