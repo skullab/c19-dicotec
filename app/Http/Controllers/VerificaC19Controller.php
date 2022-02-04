@@ -13,7 +13,7 @@ use Herald\GreenPass\Utils\FileUtils;
 class VerificaC19Controller extends Controller
 {
     protected $info = [
-        'version' => '1.0.0',
+        'version' => '1.0.1',
     ];
 
     const C19_CERTIFICATE_FOLDER    = 'c19certificates';

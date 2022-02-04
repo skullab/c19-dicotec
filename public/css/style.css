@@ -1,7 +1,11 @@
-body {
+html {
     background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,49,121,1) 22%, rgba(0,255,184,1) 100%);
+    background-attachment: fixed;
 }
-
+body {
+    background: transparent;
+}
 .container {
     bottom: 10%;
 }
@@ -16,4 +20,13 @@ body {
 
 .scan-mode {
     color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+.webcam {
+    display: inline-block;
+    margin-top: 15px;
 }

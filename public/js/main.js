@@ -1,7 +1,9 @@
-function validateSubmit(event){
+var html5QrcodeScanner = null;
+
+function validateSubmit(event, webcamDecodeText = null ){
     if(event)event.preventDefault();
     var input = document.getElementById('input-qrcode');
-    var code = input.value ;
+    var code = webcamDecodeText == null ? input.value : webcamDecodeText ;
     input.value = '';
     if(code === ''){
         Swal.fire({
@@ -66,6 +68,57 @@ function validateResponse(data){
             });
     }
 }
+
+function onWebcamScanSuccess(decodedText, decodedResult){
+    console.log("qrcode found: " + decodedText);
+    validateSubmit(null,decodedText);
+}
+
+function onWebcamScanFailure(error){
+    // console.log(error);
+}
+
+function enableWebcam(){
+    if(html5QrcodeScanner == null){
+        html5QrcodeScanner = new Html5QrcodeScanner(
+            "webcam", 
+            {   
+                fps: 10, 
+                qrbox: {
+                    width:250,
+                    height:250,
+                } 
+            }, 
+            /* verbose= */ false);
+        html5QrcodeScanner.render(onWebcamScanSuccess, onWebcamScanFailure);
+    }else{
+        html5QrcodeScanner.clear();
+        html5QrcodeScanner = null ;
+    }
+}
+
+function updateCert(){
+    Swal.fire('Aggiornamento in corso');
+    Swal.showLoading();
+    axios.post(API_UPDATE_URL).then(function(response){
+        Swal.close();
+        Swal.fire({
+            title: 'Aggiornamento completato !',
+            icon: 'success',
+            showConfirmButton:false,
+            timer:DISPLAY_TIME
+        });
+    }).catch(function(err){
+        Swal.fire({
+            title: 'Errore',
+            text: err,
+            icon: 'error',
+            showConfirmButton:false,
+            timer:DISPLAY_TIME
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('input-qrcode').focus();
     document.getElementById('form-verifica').addEventListener('submit',validateSubmit);
@@ -76,4 +129,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     var qrcode = document.getElementById('input-qrcode');
+    document.getElementById('btnUpdateCert').addEventListener('click',updateCert);
 });
